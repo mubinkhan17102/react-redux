@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import { selectAllPosts } from './postSlice';
 import { postRemove } from './postSlice';
 import AddPostForm from './AddPostForm';
+import PostAuthor from './PostAuthor';
 
 const PostList = () => {
     const posts = useSelector(selectAllPosts);
@@ -18,6 +19,7 @@ const PostList = () => {
                             <div key={post.id} style = {{border:'2px solid', padding: '20px' , margin: '20px', width: '25%'}}>
                                 <h2>{post.title}</h2>
                                 <p>{post.content.substring(0, 100)}</p>
+                                <PostAuthor userId={post.userId}/>
                                 <button onClick={()=>dispatch(postRemove(post.id))}>Remove</button>
                             </div>
                         ))
