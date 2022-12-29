@@ -6,6 +6,14 @@ const AddPostForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const dispatch = useDispatch()
+    const handlePostAdd = (e)=>{
+        e.preventDefault();
+        if(title && content){
+            dispatch(postAdded(title, content));
+            setTitle('');
+            setContent('');
+        }
+    }
   return (
     <div>
         <h2>Add a new post</h2>
@@ -29,7 +37,7 @@ const AddPostForm = () => {
             />
             <br />
             <br />
-            <button type='button' onClick={()=>{dispatch(postAdded(title,content)); setContent(''); setTitle('')}}>Save Post</button>
+            <button type='button' onClick={handlePostAdd}>Save Post</button>
         </form>
     </div>
   )
